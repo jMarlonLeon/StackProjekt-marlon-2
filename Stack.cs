@@ -35,25 +35,32 @@ public class Stack
 
     public void Push(Sobject value)
     {
-        if (top == capacity)
+        if (top == capacity - 1)
         {
             Console.WriteLine("Stack is full!");
-            throw new OverflowException("Stack is full");
+            //throw new OverflowException("Stack is full");
         }
-        Console.WriteLine($"Pushed {value.getContent()} onto the stack");
-        top++;
-        data[top] = value;
+        else
+        {
+            Console.WriteLine($"Pushed {value.getContent()} onto the stack");
+            top++;
+            data[top] = value;
+        }
     }
     public Sobject Pop()
     {
         if (top == -1)
         {
+            Console.WriteLine("Stack is empty");
             throw new InvalidOperationException("Stack is empty");
         }
-        Sobject value = data[top];
-        top--;
-        Console.WriteLine($"Popped {value.getContent()} from the stack");
-        return value;
+        else
+        {
+            Sobject value = data[top];
+            top--;
+            Console.WriteLine($"Popped {value.getContent()} from the stack");
+            return value;
+        }
     }
 
     public void Init(int length)
