@@ -6,7 +6,7 @@ namespace MyStack
     {
         static void Main(string[] args)
         {
-            //Stack myStack = new Stack(0);
+            Stack myStack = new Stack(0);
             Console.Write("Stack 1.0 - ready!");
 
             while (true)
@@ -26,8 +26,7 @@ namespace MyStack
                         size = 1;
                         Console.WriteLine("Set default Stack length to 1");
                     }
-                    Stack myStack = new Stack(size);
-
+                    myStack.Init(size);
                 }
 
                 else if (input == "end")
@@ -38,12 +37,20 @@ namespace MyStack
                 }
                 else if (input == "push")
                 {
-                    Console.Write("Enter a value to push: ");
-                    string? valueInput = Console.ReadLine()?.Trim();
+                    Console.Clear();
+                    if (myStack.getCapacity() <= 0)
+                    {
+                        Console.WriteLine("Stack has not been initialized!");
+                        throw new InvalidOperationException("Stack has not been initialized!");
+                    }
+                    
+                        Console.Write("Enter a value to push: ");
+                        string? valueInput = Console.ReadLine()?.Trim();
 
-                    Sobject value = new Sobject(valueInput);
+                        Sobject value = new Sobject(valueInput);
 
-                    bool valid_val = true;
+                        bool valid_val = true;
+                    
 
                     if (int.TryParse((string?)value.getContent(), out int int_value))
                     {

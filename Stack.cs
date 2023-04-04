@@ -31,7 +31,6 @@ public class Stack
         capacity = length;
         data = new Sobject[capacity];
         top = -1;
-        Console.WriteLine($"Initialized stack with capacity {capacity}");
     }
 
     public void Push(Sobject value)
