@@ -82,7 +82,8 @@ public class Stack
         }
         else
         {
-            for (int i = 0; i < top+1; i++)
+            Console.WriteLine("(TOP)");
+            for (int i = top; i >= 0; i--)
             {
                 Sobject printObject = data[i];
                 Console.Write(printObject.getContent());
