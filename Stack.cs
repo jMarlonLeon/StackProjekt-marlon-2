@@ -11,7 +11,7 @@ public class Sobject
 
     public object getContent()
     {
-         return content;
+        return content;
     }
 
     public void setContent(object inputobject)
@@ -22,7 +22,7 @@ public class Sobject
 
 public class Stack
 {
-    public Sobject[] data  = new Sobject[0];
+    private Sobject[] data = new Sobject[0];
     private int top;
     private int capacity;
 
@@ -37,8 +37,8 @@ public class Stack
     {
         if (top == capacity - 1)
         {
-            Console.WriteLine("Stack is full!");
-            //throw new OverflowException("Stack is full");
+            //Console.WriteLine("Stack is full!");
+            throw new OverflowException("Stack is full");
         }
         else
         {
@@ -47,11 +47,12 @@ public class Stack
             data[top] = value;
         }
     }
+
     public Sobject Pop()
     {
         if (top == -1)
         {
-            Console.WriteLine("Stack is empty");
+            //Console.WriteLine("Stack is empty");
             throw new InvalidOperationException("Stack is empty");
         }
         else
@@ -70,6 +71,7 @@ public class Stack
         top = -1;
         Console.WriteLine($"Initialized stack with capacity {capacity}");
     }
+
     public int getCapacity()
     {
         return capacity;

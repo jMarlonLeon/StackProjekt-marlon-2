@@ -11,8 +11,8 @@ namespace MyStack
 
             while (true)
             {
-            Console.Write("Enter a command (init, push, pop, print or end): ");
-            string? input = Console.ReadLine()?.Trim();
+                Console.Write("Enter a command (init, push, pop, print or end): ");
+                string? input = Console.ReadLine()?.Trim();
 
                 if (input == "init")
                 {
@@ -36,13 +36,13 @@ namespace MyStack
                     Console.WriteLine("Exiting program...");
                     break;
                 }
+
                 else if (input == "push")
                 {
                     Console.Clear();
                     if (myStack.getCapacity() <= 0)
                     {
                         Console.WriteLine("Stack has not been initialized!");
-                        //throw new InvalidOperationException("Stack has not been initialized!");
                     }
                     else
                     {
@@ -84,10 +84,17 @@ namespace MyStack
 
                         if (valid_val == true)
                         {
-                            myStack.Push(value);
-                            //Console.WriteLine($"Value {value.getContent()} pushed to the stack.");
-                            Console.WriteLine("Elements in stack:");
-                            myStack.printelements();
+                            try
+                            {
+                                myStack.Push(value);
+                                //Console.WriteLine($"Value {value.getContent()} pushed to the stack.");
+                                Console.WriteLine("Elements in stack:");
+                                myStack.printelements();
+                            }
+                            catch(OverflowException ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
                         }
                         else
                         {
@@ -95,15 +102,23 @@ namespace MyStack
                         }
                     }
                 }
+
                 else if (input == "pop")
                 {
                     Console.Clear();
                     if (myStack.getCapacity() > 0)
                     {
-                        Sobject value = myStack.Pop();
-                        //Console.WriteLine($"Value {value} popped from the stack.");
-                        Console.WriteLine("Elements in stack:");
-                        myStack.printelements();
+                        try
+                        {
+                            Sobject value = myStack.Pop();
+                            //Console.WriteLine($"Value {value} popped from the stack.");
+                            Console.WriteLine("Elements in stack:");
+                            myStack.printelements();
+                        }
+                        catch(InvalidOperationException iop)
+                        {
+                            Console.WriteLine(iop.Message);
+                        }
                     }
                     else if (myStack.getCapacity() <= 0)
                     {
@@ -115,11 +130,13 @@ namespace MyStack
                         Console.WriteLine("Stack is empty.");
                     }
                 }
+
                 else if (input == "print")
                 {
                     Console.WriteLine("printing Elements in Stack:");
                     myStack.printelements();
                 }
+
                 else
                 {
                     Console.WriteLine("Invalid command. Please enter push, pop, print or end.");
